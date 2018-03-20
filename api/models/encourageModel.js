@@ -3,11 +3,24 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var TaskSchema = new Schema({
-  name: {
+var PerfilSchema = new Schema({
+  nome: {
     type: String,
-    required: 'Kindly enter the name of the task'
+    required: 'Escreva seu Nome.'
   },
+  sexo:{
+        type: String,
+        enum: ['Masculino', 'Feminino'],
+        required: 'Escreva seu sexo.'
+  },
+  Data_Nascimento: {
+    type: Date,
+    required: 'Escreva sua Data de Nascimento.'
+  },
+  cpf:     { 
+      type: Number, 
+      required: 'Escreva seu cpf.'
+    },
   Created_date: {
     type: Date,
     default: Date.now
@@ -15,10 +28,10 @@ var TaskSchema = new Schema({
   status: {
     type: [{
       type: String,
-      enum: ['pending', 'ongoing', 'completed']
+      enum: ['Normal', 'Moderador', 'Administrador']
     }],
-    default: ['pending']
+    default: ['Normal']
   }
 });
 
-module.exports = mongoose.model('Perfils', TaskSchema);
+module.exports = mongoose.model('Perfils', PerfilSchema);

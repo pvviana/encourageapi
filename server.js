@@ -7,7 +7,7 @@ var express = require('express'),
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Tododb'); 
+mongoose.connect('mongodb://localhost/Encouragedb'); 
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,7 +21,7 @@ routes(app); //register the route
 app.listen(port);
 
 app.use(function(req, res) {
-    res.status(404).send({url: req.originalUrl + ' not found'})
+    res.status(404).send({url: req.originalUrl + ' não encontrado.'})
   });
 
 

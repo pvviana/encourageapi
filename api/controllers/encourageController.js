@@ -2,55 +2,55 @@
 
 
 var mongoose = require('mongoose'),
-  Task = mongoose.model('Tasks');
+  Perfil = mongoose.model('Perfils');
 
-exports.list_all_tasks = function(req, res) {
-  Task.find({}, function(err, task) {
+exports.listar_todos_perfils = function(req, res) {
+  Perfil.find({}, function(err, perfil) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(perfil);
   });
 };
 
 
 
 
-exports.create_a_task = function(req, res) {
-  var new_task = new Task(req.body);
-  new_task.save(function(err, task) {
+exports.criar_perfil = function(req, res) {
+  var novo_perfil = new Perfil(req.body);
+  novo_perfil.save(function(err, perfil) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(perfil);
   });
 };
 
 
-exports.read_a_task = function(req, res) {
-  Task.findById(req.params.taskId, function(err, task) {
+exports.ler_perfil = function(req, res) {
+  Perfil.findById(req.params.perfilId, function(err, perfil) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(perfil);
   });
 };
 
 
-exports.update_a_task = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, function(err, task) {
+exports.alterar_perfil = function(req, res) {
+  Perfil.findOneAndUpdate({_id: req.params.perfilId}, req.body, {new: true}, function(err, perfil) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(perfil);
   });
 };
 
 
-exports.delete_a_task = function(req, res) {
+exports.deletar_perfil = function(req, res) {
 
 
-  Task.remove({
-    _id: req.params.taskId
-  }, function(err, task) {
+  Perfil.remove({
+    _id: req.params.perfilId
+  }, function(err, perfil) {
     if (err)
       res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    res.json({ message: 'Perfil deletedo com sucesso.' });
   });
 };
